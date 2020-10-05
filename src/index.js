@@ -1,12 +1,15 @@
 module.exports = function check(str, bracketsConfig) {
     let stackBrackets = [];
 
-     const isOpenBrackets = (currentBracket) => {
+     const isOpenBrackets = (curBr) => {
         for (let i = 0; i < bracketsConfig.length; i++) {
-            if (currentBracket === bracketsConfig[i][0]) {
-                if (bracketsConfig[i][0] === bracketsConfig[i][1]) return -1;
 
-                return bracketsConfig[i][1];
+            const [openBr, closeBr] = bracketsConfig[i];
+
+            if (curBr === openBr) {
+                if (openBr === closeBr) return -1;
+
+                return closeBr;
             }
         }
         return false;
